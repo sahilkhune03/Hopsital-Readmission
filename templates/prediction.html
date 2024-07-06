@@ -1,0 +1,128 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Project</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('static/prediction.jpeg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+
+        h1 {
+            margin-left: 20px;
+            color: white;
+        }
+
+        form {
+            background-color: #234862;
+            width: 100%; /* Set the form width to 80% of the container */
+            max-width:800px;
+            height:100% 
+            max-height:900px/* Set a maximum width for the form */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-left: 20px;
+            margin-top: 20px; /* Add margin at the top for better spacing */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%; /* Adjust the width to 100% */
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+
+        .result {
+            color: white;
+            margin-top: 20px;
+            width: 100%; /* Adjust the width as needed */
+             /* Set a maximum width for the result section */
+        }
+    </style>
+    <!-- Your other styles and links go here -->
+</head>
+<body>
+    <h2 style="color:white;"> NEXT-GENERATION DIABETIC CARE: HOSPITAL RE-ADMISSION PROGNOSIS </h2>
+    <form action="{{ url_for('predict')}}" method="post" class="form">
+      <input type="text" name="age" placeholder="Age (Years)" required="required" /><br>
+      <input type="text" name="time_in_hospital" placeholder="Time in hospital (1 to 14)" required="required" /><br>
+      <input type="text" name="gender_1" placeholder="Gender (Male=1, Female=0)" required="required" /><br>
+      <input type="text" name="num_procedures" placeholder="No. of procedures (0 to 6)" required="required" /><br>
+      <input type="text" name="num_medications" placeholder="No. of medications (1 to 81)" required="required" /><br>
+      <input type="text" name="number_diagnoses" placeholder="No. of diagnoses (3 to 16)" required="required" /><br>
+      <input type="text" name="metformin" placeholder="Metformin (Yes=1, No=0)" required="required" /><br>
+      <input type="text" name="insulin" placeholder="Insulin (Yes=1, No=0)" required="required" /><br>
+      <input type="text" name="number_outpatient_log1p" placeholder="Number Outpatient log1p (0 to 2)" required="required" /><br>
+      <input type="text" name="discharge_disposition_id_2" placeholder="Discharge Disposition ID (0 to 28)" required="required" /><br>
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+      <div class="result">
+        <h3 align="center">{{ prediction_text }}</h3>
+        {% if prediction_text == 'Will this patient get readmitted within 30 days of discharge: No' %}
+            <button onclick="showRecommendation()">Show Recommendation</button>
+            <p id="recommendation" style="display: none;">{{ recommendation_text }}</p>
+        {% endif %}
+        {% if prediction_text == 'Will this patient get readmitted within 30 days of discharge: Yes' %}
+            <button onclick="showRecommendation()">Show Recommendation</button>
+            <p id="recommendation" style="display: none;">{{ recommendation_text }}</p>
+        {% endif %}
+    </div>
+   
+
+    
+    <script>
+        function showRecommendation() {
+            var recommendationDiv = document.getElementById("recommendation");
+            recommendationDiv.style.display = "block";
+        }
+    </script>
+ 
+    
+    
+    <script>
+        function validateForm() {
+            // Validation logic here
+
+            // Redirect to success.html after successful validation
+            window.location.href = 'success.html';
+
+            // Return false to prevent the form from submitting (optional)
+            return false;
+        }
+    </script>
+</body>
+</html>

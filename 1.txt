@@ -1,0 +1,1704 @@
+db
+test
+show dbs
+admin   40.00 KiB
+config  84.00 KiB
+local   40.00 KiB
+use mydb
+switched to db mydb
+db.createCollection("customer")
+{ ok: 1 }
+show collections
+customer
+db.customer.insertOne({first:'Sahil',last:'Khune',gender:'male'})
+{
+  acknowledged: true,
+  insertedId: ObjectId("6556e1f358317b6104d6529a")
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e1f358317b6104d6529a"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+db.customer.insertMany([{first:'Sahil',last:'Khune',gender:'male'},{first:'Milind',last:'Khune',gender:'male'},{first:'Rohit',last:'Patil',gender:'male'},{first:'Parthesh',last:'Patel',gender:'male'}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("6556e52558317b6104d6529b"),
+    '1': ObjectId("6556e52558317b6104d6529c"),
+    '2': ObjectId("6556e52558317b6104d6529d"),
+    '3': ObjectId("6556e52558317b6104d6529e")
+  }
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e1f358317b6104d6529a"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+db.customer.updateOne({first:"Rohit"},{$set:{gender:'Male'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e1f358317b6104d6529a"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil',
+  gender: 'Male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+db.customer.updateOne({first:"Rohit"},{$set:{age:19}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e1f358317b6104d6529a"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil',
+  gender: 'Male',
+  age: 19
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+db.customer.updateOne({first:"Rohit"},{$inc:{age:1}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e1f358317b6104d6529a"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil',
+  gender: 'Male',
+  age: 20
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+db.customer.updateOne({first:"Rohit"},{$inc:{age:-2}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e1f358317b6104d6529a"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil',
+  gender: 'Male',
+  age: 18
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+db.customer.updateOne({first:"Rohit"},{$unset:{age:1}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e1f358317b6104d6529a"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil',
+  gender: 'Male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+db.customer.updateOne({first:"Rohit"},{$unset:{gender:2}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e1f358317b6104d6529a"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+db.customer.updateOne({first:"Rohit"},{$set:{gender:"Male"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e1f358317b6104d6529a"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil',
+  gender: 'Male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+db.customer.updateOne({first:"Rohit"},{$rename:{gender:"Gender"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e1f358317b6104d6529a"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil',
+  Gender: 'Male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+db.customer.updateOne({first:"Rohit"},{$set:{city:"Nagpur"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e1f358317b6104d6529a"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil',
+  Gender: 'Male',
+  city: 'Nagpur'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+db.customer.updateOne({first:"Rohit"},{$set:{city:"Nagpur",age:19}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e1f358317b6104d6529a"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil',
+  Gender: 'Male',
+  city: 'Nagpur',
+  age: 19
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+db.customer.updateOne({first:"Anuj"},{$set:{first:'Anuj',last:'Shrivastav',gender:'male'city:"Nagpur",age:20},{upsert:true}})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.customer.updateOne({first:"Anuj"},{$set:{first:'Anuj',last:'Shrivastav',gender:'male'city:"Nagpur",age:20}},,{upsert:true})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.customer.updateOne({first:"Anuj"},{$set:{first:'Anuj',last:'Shrivastav',gender:'male'city:"Nagpur",age:20}},{upsert:true})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.customer.updateOne({first:"Anuj"},{$set:{first:'Anuj',last:'Shrivastav',gender:'male',city:"Nagpur",age:20}},{upsert:true})
+{
+  acknowledged: true,
+  insertedId: ObjectId("6556ec0b368f48363513f06b"),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e1f358317b6104d6529a"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil',
+  Gender: 'Male',
+  city: 'Nagpur',
+  age: 19
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556ec0b368f48363513f06b"),
+  first: 'Anuj',
+  age: 20,
+  city: 'Nagpur',
+  gender: 'male',
+  last: 'Shrivastav'
+}
+Milind
+************************************************************************
+//day 2
+
+use mydb
+switched to db mydb
+db.customer.findOneAndUpdate({first:"Rohit"},{$set:{age:24}})
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil',
+  Gender: 'Male',
+  city: 'Nagpur',
+  age: 19
+}
+db.customer.findOneAndUpdate({first:"Rohit"},{$set:{salary:400000}},{upsert:true})
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil',
+  Gender: 'Male',
+  city: 'Nagpur',
+  age: 24
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e1f358317b6104d6529a"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil',
+  Gender: 'Male',
+  city: 'Nagpur',
+  age: 24,
+  salary: 400000
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556ec0b368f48363513f06b"),
+  first: 'Anuj',
+  age: 20,
+  city: 'Nagpur',
+  gender: 'male',
+  last: 'Shrivastav'
+}
+db.customer.deleteOne({first:"Sahil"})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529d"),
+  first: 'Rohit',
+  last: 'Patil',
+  Gender: 'Male',
+  city: 'Nagpur',
+  age: 24,
+  salary: 400000
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556ec0b368f48363513f06b"),
+  first: 'Anuj',
+  age: 20,
+  city: 'Nagpur',
+  gender: 'male',
+  last: 'Shrivastav'
+}
+db.customer.insertMany([{first:"Adi",last:"Shau",age:20},{first:"Rohit",last:'sharma',age:36}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("6558358dc7fe8e2a1ed15d4d"),
+    '1': ObjectId("6558358dc7fe8e2a1ed15d4e")
+  }
+}
+db.customer.deleteMany({first:"Rohit"})
+{
+  acknowledged: true,
+  deletedCount: 2
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556ec0b368f48363513f06b"),
+  first: 'Anuj',
+  age: 20,
+  city: 'Nagpur',
+  gender: 'male',
+  last: 'Shrivastav'
+}
+{
+  _id: ObjectId("6558358dc7fe8e2a1ed15d4d"),
+  first: 'Adi',
+  last: 'Shau',
+  age: 20
+}
+db.customer.updateOne({first:"Rohit"},{$set:{first:'Rohit',last:'Patil',gender:'male',city:"Nagpur",age:19}},{upsert:true})
+{
+  acknowledged: true,
+  insertedId: ObjectId("655835fb368f48363513f2f1"),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+db.customer.find()
+{
+  _id: ObjectId("6556e52558317b6104d6529b"),
+  first: 'Sahil',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529c"),
+  first: 'Milind',
+  last: 'Khune',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556e52558317b6104d6529e"),
+  first: 'Parthesh',
+  last: 'Patel',
+  gender: 'male'
+}
+{
+  _id: ObjectId("6556ec0b368f48363513f06b"),
+  first: 'Anuj',
+  age: 20,
+  city: 'Nagpur',
+  gender: 'male',
+  last: 'Shrivastav'
+}
+{
+  _id: ObjectId("6558358dc7fe8e2a1ed15d4d"),
+  first: 'Adi',
+  last: 'Shau',
+  age: 20
+}
+{
+  _id: ObjectId("655835fb368f48363513f2f1"),
+  first: 'Rohit',
+  age: 19,
+  city: 'Nagpur',
+  gender: 'male',
+  last: 'Patil'
+}
+
+
+var AllCustomers=
+[
+    {
+        first_name:"Gunjan",
+        last_name:"Keswani",
+        gender:"female",
+        age:35,
+        address:{
+                street:"Civil Lines",
+                city:"Nagpur",
+                state:"M.S."
+        },
+        memberships:["mem1", "mem2"],
+        balance:253.76              
+    },
+    {
+        first_name:"Bharat",
+        last_name:"Lalwani",
+        gender:"male",
+        age:40,
+        address:{
+                street:"Bajaj Nagar",
+                city:"Nagpur",
+                state:"M.S."
+        },
+        memberships:["mem1", "mem2"],
+        balance:134.76              
+    },
+    {
+        first_name:"Rajat",
+        last_name:"Sharma",
+        gender:"male",
+        age:40,
+        address:{
+                street:"Laxmi Nagar",
+                city:"Nagpur",
+                state:"M.S."
+        },
+        memberships:["mem1", "mem2", "mem3"],
+        balance:178.79              
+    },
+    {
+        first_name:"Neha",
+        last_name:"Kasture",
+        gender:"female",
+        age:40,
+        address:{
+                street:"Trimurti Nagar",
+                city:"Nagpur",
+                state:"M.S."
+        },
+        memberships:["mem1", "mem2", "mem3"],
+        balance:452.13             
+    }
+]
+db.customers.insertMany(AllCustomers)
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("6558388bc7fe8e2a1ed15d4f"),
+    '1': ObjectId("6558388bc7fe8e2a1ed15d50"),
+    '2': ObjectId("6558388bc7fe8e2a1ed15d51"),
+    '3': ObjectId("6558388bc7fe8e2a1ed15d52")
+  }
+}
+show collections()
+MongoshInvalidInputError: [COMMON-10001] 'collections()' is not a valid argument for "show".
+show collections
+customer
+customers
+db.customers.find()
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d4f"),
+  first_name: 'Gunjan',
+  last_name: 'Keswani',
+  gender: 'female',
+  age: 35,
+  address: {
+    street: 'Civil Lines',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 253.76
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d50"),
+  first_name: 'Bharat',
+  last_name: 'Lalwani',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Bajaj Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 134.76
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d51"),
+  first_name: 'Rajat',
+  last_name: 'Sharma',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Laxmi Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 178.79
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d52"),
+  first_name: 'Neha',
+  last_name: 'Kasture',
+  gender: 'female',
+  age: 40,
+  address: {
+    street: 'Trimurti Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 452.13
+}
+db.customers.find({city:'Nagpur'})
+db.customers.find({address:{city:'Nagpur'}})
+db.customers.find({address.city:'Nagpur'})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.customers.find({address[city]:'Nagpur'})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.customers.find({address["city"]:'Nagpur'})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.customers.find({address.city:'Nagpur'})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.customers.find({"address.city":'Nagpur'})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d4f"),
+  first_name: 'Gunjan',
+  last_name: 'Keswani',
+  gender: 'female',
+  age: 35,
+  address: {
+    street: 'Civil Lines',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 253.76
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d50"),
+  first_name: 'Bharat',
+  last_name: 'Lalwani',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Bajaj Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 134.76
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d51"),
+  first_name: 'Rajat',
+  last_name: 'Sharma',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Laxmi Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 178.79
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d52"),
+  first_name: 'Neha',
+  last_name: 'Kasture',
+  gender: 'female',
+  age: 40,
+  address: {
+    street: 'Trimurti Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 452.13
+}
+db.customers.find({'address.street': 'Trimurti Nagar'})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d52"),
+  first_name: 'Neha',
+  last_name: 'Kasture',
+  gender: 'female',
+  age: 40,
+  address: {
+    street: 'Trimurti Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 452.13
+}
+db.customers.find({'memberships[3]': 'mem3'})
+db.customers.find({'memberships[2]': 'mem3'})
+db.customers.find({memberships[2]: 'mem3'})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.customers.find({memberships[2]:'mem3'})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.customers.find({memberships[2]:'mem3'})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.customers.find({memberships:'mem3'})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d51"),
+  first_name: 'Rajat',
+  last_name: 'Sharma',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Laxmi Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 178.79
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d52"),
+  first_name: 'Neha',
+  last_name: 'Kasture',
+  gender: 'female',
+  age: 40,
+  address: {
+    street: 'Trimurti Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 452.13
+}
+db.customers.find({$gt:{age:40}})
+MongoServerError: unknown top level operator: $gt. If you have a field name that starts with a '$' symbol, consider using $getField or $setField.
+db.customers.find({age:{$gt:40}})
+db.customers.find({age:{$gt:30}})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d4f"),
+  first_name: 'Gunjan',
+  last_name: 'Keswani',
+  gender: 'female',
+  age: 35,
+  address: {
+    street: 'Civil Lines',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 253.76
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d50"),
+  first_name: 'Bharat',
+  last_name: 'Lalwani',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Bajaj Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 134.76
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d51"),
+  first_name: 'Rajat',
+  last_name: 'Sharma',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Laxmi Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 178.79
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d52"),
+  first_name: 'Neha',
+  last_name: 'Kasture',
+  gender: 'female',
+  age: 40,
+  address: {
+    street: 'Trimurti Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 452.13
+}
+db.customers.find({age:{$lt:30}})
+db.customers.find({age:{$lt:40}})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d4f"),
+  first_name: 'Gunjan',
+  last_name: 'Keswani',
+  gender: 'female',
+  age: 35,
+  address: {
+    street: 'Civil Lines',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 253.76
+}
+Milind
+Selection deleted
+
+
+
+***************************************************************************************************
+
+
+//day 3
+db.customers.find().sort({first:1}).limit(2)
+use mydb
+switched to db mydb
+db.customers.find().sort({first:1}).limit(2)
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d4f"),
+  first_name: 'Gunjan',
+  last_name: 'Keswani',
+  gender: 'female',
+  age: 35,
+  address: {
+    street: 'Civil Lines',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 253.76
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d50"),
+  first_name: 'Bharat',
+  last_name: 'Lalwani',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Bajaj Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 134.76
+}
+db.customers.find({},{first:'Bharat'})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d4f"),
+  first: 'Bharat'
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d50"),
+  first: 'Bharat'
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d51"),
+  first: 'Bharat'
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d52"),
+  first: 'Bharat'
+}
+db.customers.find({},{first:1})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d4f")
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d50")
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d51")
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d52")
+}
+db.customers.find({},{first_name:1})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d4f"),
+  first_name: 'Gunjan'
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d50"),
+  first_name: 'Bharat'
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d51"),
+  first_name: 'Rajat'
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d52"),
+  first_name: 'Neha'
+}
+db.customers.find({},{gender:1})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d4f"),
+  gender: 'female'
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d50"),
+  gender: 'male'
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d51"),
+  gender: 'male'
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d52"),
+  gender: 'female'
+}
+db.customers.find({},{gender:1,_id:0}).skip(2).limit(1)
+{
+  gender: 'male'
+}
+db.customers.find({},{first_name:1,_id:0}).skip(2).limit(1)
+{
+  first_name: 'Rajat'
+}
+db.customers.find({$and:[gender:'male',age:35]})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.customers.find({$and:[{gender:'male'},{age:40}]})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d50"),
+  first_name: 'Bharat',
+  last_name: 'Lalwani',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Bajaj Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 134.76
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d51"),
+  first_name: 'Rajat',
+  last_name: 'Sharma',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Laxmi Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 178.79
+}
+db.customers.find({$or:[{gender:'male'},{age:50}]})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d50"),
+  first_name: 'Bharat',
+  last_name: 'Lalwani',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Bajaj Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 134.76
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d51"),
+  first_name: 'Rajat',
+  last_name: 'Sharma',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Laxmi Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 178.79
+}
+db.customers.find({$nor:[{gender:'male'},{age:40}]})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d4f"),
+  first_name: 'Gunjan',
+  last_name: 'Keswani',
+  gender: 'female',
+  age: 35,
+  address: {
+    street: 'Civil Lines',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 253.76
+}
+db.customers.find({$nor:[{gender:'male'},{age:35}]})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d52"),
+  first_name: 'Neha',
+  last_name: 'Kasture',
+  gender: 'female',
+  age: 40,
+  address: {
+    street: 'Trimurti Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 452.13
+}
+db.customers.find({$nor:[{gender:'male'},{age:{$gt:35}}]})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d4f"),
+  first_name: 'Gunjan',
+  last_name: 'Keswani',
+  gender: 'female',
+  age: 35,
+  address: {
+    street: 'Civil Lines',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 253.76
+}
+db.customers.find({$or:[{gender:'male'}]})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d50"),
+  first_name: 'Bharat',
+  last_name: 'Lalwani',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Bajaj Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 134.76
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d51"),
+  first_name: 'Rajat',
+  last_name: 'Sharma',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Laxmi Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 178.79
+}
+db.customers.find({$not:[{gender:'male'}]})
+MongoServerError: unknown top level operator: $not. If you are trying to negate an entire expression, use $nor.
+db.customers.find({$not:{gender:'male'})
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.customers.find({$not:{gender:{$gt:35}}})
+MongoServerError: unknown top level operator: $not. If you are trying to negate an entire expression, use $nor.
+db.customers.find({$not:{age:{$gt:35}}})
+MongoServerError: unknown top level operator: $not. If you are trying to negate an entire expression, use $nor.
+db.customers.find({age:{$not:{$gt:35}}})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d4f"),
+  first_name: 'Gunjan',
+  last_name: 'Keswani',
+  gender: 'female',
+  age: 35,
+  address: {
+    street: 'Civil Lines',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 253.76
+}
+db.customers.find({gender:{$not:{$in:['male']}}})
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d4f"),
+  first_name: 'Gunjan',
+  last_name: 'Keswani',
+  gender: 'female',
+  age: 35,
+  address: {
+    street: 'Civil Lines',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 253.76
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d52"),
+  first_name: 'Neha',
+  last_name: 'Kasture',
+  gender: 'female',
+  age: 40,
+  address: {
+    street: 'Trimurti Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 452.13
+}
+Milind
+Selection deleted
+
+
+
+
+*********************************************************
+Day 4
+use mydb
+switched to db mydb
+show collections
+customer
+customers
+db.customers.find()
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d4f"),
+  first_name: 'Gunjan',
+  last_name: 'Keswani',
+  gender: 'female',
+  age: 35,
+  address: {
+    street: 'Civil Lines',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 253.76
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d50"),
+  first_name: 'Bharat',
+  last_name: 'Lalwani',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Bajaj Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2'
+  ],
+  balance: 134.76
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d51"),
+  first_name: 'Rajat',
+  last_name: 'Sharma',
+  gender: 'male',
+  age: 40,
+  address: {
+    street: 'Laxmi Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 178.79
+}
+{
+  _id: ObjectId("6558388bc7fe8e2a1ed15d52"),
+  first_name: 'Neha',
+  last_name: 'Kasture',
+  gender: 'female',
+  age: 40,
+  address: {
+    street: 'Trimurti Nagar',
+    city: 'Nagpur',
+    state: 'M.S.'
+  },
+  memberships: [
+    'mem1',
+    'mem2',
+    'mem3'
+  ],
+  balance: 452.13
+}
+db.customers.aggregate([{$group:{_id:$gender, Total:{$sum:"$balance"}}}])
+ReferenceError: $gender is not defined
+db.customers.aggregate([{$group:{_id:"$gender", Total:{$sum:"$balance"}}}])
+{
+  _id: 'female',
+  Total: 705.89
+}
+{
+  _id: 'male',
+  Total: 313.54999999999995
+}
+db.customers.aggregate([{$group:{_id:"$gender", Max:{$max:"$age"}}}])
+{
+  _id: 'female',
+  Max: 40
+}
+{
+  _id: 'male',
+  Max: 40
+}
+db.customers.aggregate([{$group:{_id:"$gender", Max:{$max:"$balance"}}}])
+{
+  _id: 'female',
+  Max: 452.13
+}
+{
+  _id: 'male',
+  Max: 178.79
+}
+db.customers.aggregate([{$group:{_id:"$gender", Min:{$min:"$balance"}}}])
+{
+  _id: 'male',
+  Min: 134.76
+}
+{
+  _id: 'female',
+  Min: 253.76
+}
+db.customers.aggregate([{$group:{_id:"$gender", Average:{$avg:"$balance"}}}])
+{
+  _id: 'female',
+  Average: 352.945
+}
+{
+  _id: 'male',
+  Average: 156.77499999999998
+}
+db
+mydb
+show dbs
+admin     40.00 KiB
+mydb  112.00 KiB
+config    96.00 KiB
+local     40.00 KiB
+db.dropDatabase()
+{ ok: 1, dropped: 'mydb' }
+show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+show dbs
+admin     40.00 KiB
+Milind   80.00 KiB
+config   108.00 KiB
+local     40.00 KiB
+use mydb
+switched to db mydb
+db.book.insert({bname:"Let Us C",author:'Y. K'})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("655d833a13a7ac0e607eaca3")
+  }
+}
+show mydb
+MongoshInvalidInputError: [COMMON-10001] 'mydb' is not a valid argument for "show".
+db.book.find()
+{
+  _id: ObjectId("655d833a13a7ac0e607eaca3"),
+  bname: 'Let Us C',
+  author: 'Y. K'
+}
+show dbs
+admin     40.00 KiB
+config   108.00 KiB
+local     40.00 KiB
+mydb       8.00 KiB
+db.dropDatabase()
+{ ok: 1, dropped: 'mydb' }
+show dbs
+admin     40.00 KiB
+config   108.00 KiB
+local     40.00 KiB
+show dbs
+admin     40.00 KiB
+config   108.00 KiB
+local     40.00 KiB
+mydb       8.00 KiB
+db.dropDatabase()
+{ ok: 1, dropped: 'mydb' }
+show dbs
+admin     40.00 KiB
+config   108.00 KiB
+local     40.00 KiB
+show dbs
+admin     40.00 KiB
+config   108.00 KiB
+local     40.00 KiB
+mydb       8.00 KiB
+db.book.drop()
+true
+show collections
+show collections
+book
+db.book.find()
+{
+  _id: ObjectId("655d833a13a7ac0e607eaca3"),
+  bname: 'Let Us C',
+  author: 'Y. K'
+}
+db.book.createIndex({title:1})
+title_1
+db.book.getIndexes()
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { title: 1 }, name: 'title_1' }
+]
+db.book.dropIndex({title:1})
+{ nIndexesWas: 2, ok: 1 }
+db.book.getIndexes()
+[ { v: 2, key: { _id: 1 }, name: '_id_' } ]
+db.book.createIndexes({title:1,author:-1})
+TypeError: e.map is not a function
+db.book.createIndex({title:1,author:-1})
+title_1_author_-1
+db.book.getIndexes()
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { title: 1, author: -1 }, name: 'title_1_author_-1' }
+]
+db.book.dropIndexes()
+{
+  nIndexesWas: 2,
+  msg: 'non-_id indexes dropped for collection',
+  ok: 1
+}
+db.book.getIndexes()
+[ { v: 2, key: { _id: 1 }, name: '_id_' } ]
+db.book.createIndex({title:1, unique:true})
+MongoServerError: Error in specification { name: "title_1_unique_true", key: { title: 1, unique: true } } :: caused by :: Values in v:2 index key pattern cannot be of type bool. Only numbers > 0, numbers < 0, and strings are allowed.
+db.book.createIndex({title:1}, {unique:true})
+title_1
+for(var i=0;i<1000;i++){}
+for(var i=0;i<1000;i++){ db.users.insert({student_id:i, name:"Mark"+i})}
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("655d8bd813a7ac0e607eb08b")
+  }
+}
+db.users.find({student_id:344})
+{
+  _id: ObjectId("655d8bd613a7ac0e607eadfc"),
+  student_id: 344,
+  name: 'Mark344'
+}
+db.users.ensureIndex({student_id:1})
+[ 'student_id_1' ]
+db.users.find({student_id:444})
+{
+  _id: ObjectId("655d8bd713a7ac0e607eae60"),
+  student_id: 444,
+  name: 'Mark444'
+}
+mydb
